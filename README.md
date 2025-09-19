@@ -3,7 +3,7 @@
 
 Name:
 
-Link to Assignment on Github: (copy and paste the link to your assignment repo here)
+Link to Assignment on Github: [(https://github.com/CS5008Fall2025/c-practice-NHazelJ.git)]
 
 How many hours did it take you to complete this assignment (estimate)? 
 
