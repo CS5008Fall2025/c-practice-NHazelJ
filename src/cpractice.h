@@ -46,7 +46,9 @@ typedef struct {
  * of the variables in the calling function. 
 **/
 void swap(int *a, int *b){
-
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 /**

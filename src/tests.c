@@ -36,6 +36,13 @@ int test_swap_one() {
     return 0;
 }
 
+int test_swap_two(){
+    int a = 5;
+    int b = 10;
+    swap(&a, &b);
+    return (a == 10 && b == 5);
+}
+
 /**
  * Tests the create_array_of_ints_fib function
 */
@@ -62,6 +69,7 @@ int test_create_array_of_ints_fib() {
 int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
+        test_swap_two,
         // add more test function names here
 };
 
