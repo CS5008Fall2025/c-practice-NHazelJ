@@ -40,36 +40,71 @@ int test_swap_two(){
     int a = 5;
     int b = 10;
     swap(&a, &b);
-    return (a == 10 && b == 5);
+    if (a == 10 && b == 5) {
+        return 1;
+    }
+    return 0;
 }
 
 /**
  * Tests the create_array_of_ints_fib function
 */
+
 int test_create_array_of_ints_fib() {
-    printf("2. test_create_array_of_ints_fib()\n");
+    printf("1. test_create_array_of_ints_fib()\n");
+    // calling function to create fib array of size 5
     int* arr = create_array_of_ints_fib(5);
+    
+    // fib numbers when size is 5 are 1, 1, 2, 3, 5
     int expected[] = {1, 1, 2, 3, 5};
+    // comparing every value in the array of what we got to the expected values
     for (int i = 0; i < 5; i++) {
         if (arr[i] != expected[i]) {
+            // if any value is wrong then free memory
             free(arr);
+            // return 0 for fail test
             return 0;
         }
     }
-    free(arr); // note expected does not need freed.. why is that?
-    // everything matched
+
+    // after checking all values and being matched then we free memory
+    free(arr);
+    // test passed
     return 1;
 }
 
-
-
-
+int test_create_array_of_ints_fib_edge_cases() {
+    // checking size 1 for fib
+    printf("2. test_create_array_of_ints_fib()\n");
+    int* arr = create_array_of_ints_fib(1);
+    if (arr == NULL) {
+        return 0;
+    }
+    if (arr[0] != 1) {
+        // freeing memory
+        free(arr);
+        return 0;
+    }
+    // freeing heap memory
+    free(arr);
+    
+    // checking size 0 for fib
+    int *arr2 = create_array_of_ints_fib(0);
+    if (arr2 != NULL) {
+       // freeing memory
+        free(arr2);
+        return 0;
+    }
+    // after checking both edge cases and passing then we get return 1
+    return 1;
+}
 
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
         test_swap_two,
+        test_create_array_of_ints_fib_edge_cases,
         // add more test function names here
 };
 

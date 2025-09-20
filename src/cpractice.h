@@ -90,7 +90,30 @@ void print_array(int *arr, int size)
  * here is a quick list of numbers: https://www.math.net/list-of-fibonacci-numbers
  **/
 int* create_array_of_ints_fib(int size){
-    return NULL;
+    // if size is less than or equal to 0 then return NULL
+    if (size <= 0) {
+        return NULL;
+    }   
+
+    // using malloc to allocate memory for the array, this reserves space for size integers
+    // returning a pointer to the first element of the array
+    int *arr = malloc(sizeof(int) * size);
+    // check if malloc worked or not
+    if (arr == NULL) {
+        return NULL;
+    }
+    // set the first two values to 1 because we have at least two values for fib
+    arr[0] = 1;
+    // if array has 2 values then setting the second one
+    if (size > 1) {
+        arr[1] = 1;
+    }
+    // looping through the array starting at index 2
+        for (int i = 2; i < size; i++) {
+            arr[i] = arr[i - 1] + arr[i - 2];
+        }
+    // returning pointer to the array created
+    return arr;
 }
 
 /**

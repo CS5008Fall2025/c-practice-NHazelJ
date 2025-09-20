@@ -3,14 +3,13 @@
 
 Name:
 
-Link to Assignment on Github: [(https://github.com/CS5008Fall2025/c-practice-NHazelJ.git)]
+Link to Assignment on Github: [https://github.com/CS5008Fall2025/c-practice-NHazelJ/tree/main]
 
 How many hours did it take you to complete this assignment (estimate)? 
 
 Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.  
-- one per row, add more if needed
-
+- N/A
 
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)  
-- one row per resource
+- Math.net. https://www.math.net/list-of-fibonacci-numbers. Accessed: 20 September 2025. 
 

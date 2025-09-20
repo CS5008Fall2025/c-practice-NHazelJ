@@ -6,7 +6,8 @@ Completely answer the report questions below. Make sure to double check the fina
 
 
 1. What is the difference between a standard numeric type (int, float, double) and a pointer?
-   
+   For int, float and double, are the types that the variables will get. The actual values inside the variables that they will get.
+   Now the pointer it does not store the actual value, the pointer stores the memory address of the variable. You can use the pointer to print the value.
 2. In your test file, we had the following code:
     
     ```c
@@ -14,6 +15,7 @@ Completely answer the report questions below. Make sure to double check the fina
     int expected[] = {1, 1, 2, 3, 5};
     ```
     Later in the code we only `free(arr)` but not expected. Why is this? What is the difference in where they are stored in memory?
+    
 
 3. What is the difference between the heap and stack when related to memory allocation and management?
 
