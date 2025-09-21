@@ -13,4 +13,7 @@ Did you collaborate with any other students/TAs/Professors? If so, tell us who a
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)  
 - Math.net. https://www.math.net/list-of-fibonacci-numbers. Accessed: 20 September 2025. 
 - GeeksforGeeks - Point in polygon in C. https://www.geeksforgeeks.org/c/point-in-polygon-in-c/ Accessed: 20 September 2025.
-
+- Tutorialspoint. 2025. C Library – <stdio.h>. Retrieved September 22, 2025 from https://www.tutorialspoint.com/c_standard_library/stdio_h.htm
+- cppreference.com Contributors. 2025. Standard library header <stdlib.h>. cppreference.com. Retrieved May 1, 2025 from https://en.cppreference.com/w/c/header/stdlib
+- GeeksforGeeks. 2025. C string functions. GeeksforGeeks. Retrieved from https://www.geeksforgeeks.org/c/string-functions-in-c/
+- C Math.h. Retrieved from https://www.programiz.com/c-programming/library-function/math.h
