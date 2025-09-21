@@ -149,13 +149,31 @@ void reverse_array(int *arr, int size){
 /**
  * Doubles the size of an array, and copies all previous values into the new array.
  * All other values should be set to 0. Returns a pointer to the new array
- * 
+ * in - [1, 2, 3]
+ * out - [1, 2, 3, 0, 0, 0]
  * You may want to look at calloc to help with this, to confirm all values are set to 0.
  * though you don't have to, if you want to loop through and set them to 0 yourself.
  * 
 */
 int* double_array_size(int *arr, int size){
-    return NULL;
+    // checking if array is 0 or negative, return null shows there is no array
+    if(size <= 0) {
+        return NULL;
+    }   
+    // new size of the array is double
+    int new_size = size * 2;
+    // calloc allocates memory and sets all values to 0
+    int *new_arr = calloc(new_size, sizeof(int));
+    // check if calloc worked or not
+    if(new_arr == NULL) {
+        return NULL;
+    }
+    // copying values from old array to new array
+    for(int i = 0; i < size; i++) {
+        new_arr[i] = arr[i];
+    }
+    // returning pointer to the new array
+    return new_arr;
 }
 
 /**

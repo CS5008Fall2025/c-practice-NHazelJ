@@ -138,7 +138,63 @@ int test_reverse_array_edge_cases() {
     return 1;
 }
 
+// testing double_array function
+// [1, 2, 3] -> [1, 2, 3, 0, 0, 0]
 
+int test_double_array(){
+    // original array this is on stack
+    int original[] = {1, 2, 3};
+    // calling function to double the array
+    int* new_arr = double_array_size(original, 3);
+    // checking if allocation worked or not
+    if(new_arr == NULL){
+        return 0;
+    }
+    if(new_arr[0] != 1){
+        free(new_arr);
+        return 0;
+    }
+    if(new_arr[1] != 2){
+        free(new_arr);
+        return 0;
+    }
+    if(new_arr[2] != 3){
+        free(new_arr);
+        return 0;
+    }
+    // freeing memory in the heap
+    free(new_arr);
+    // test passed
+    return 1;
+}
+
+// testing new values are zeros after doubling
+int test_double_array_zeros(){
+    // original array on stack
+    int original[] = {1, 2, 3};
+    // calling function to double the array
+    int* new_arr = double_array_size(original, 3);
+    // checking if allocation worked or not
+    if(new_arr == NULL){
+        return 0;
+    }
+    if(new_arr[3] != 0){
+        free(new_arr);
+        return 0;
+    }
+    if(new_arr[4] != 0){
+        free(new_arr);
+        return 0;
+    }
+    if(new_arr[5] != 0){
+        free(new_arr);
+        return 0;
+    }
+    // freeing memory in the heap
+    free(new_arr);
+    // test passed
+    return 1;
+}
 
 // this is a list of all the unit tests
 int (*unitTests[])() = {
@@ -147,7 +203,10 @@ int (*unitTests[])() = {
         test_swap_two,
         test_create_array_of_ints_fib_edge_cases,
         test_reverse_array_one,
-        test_reverse_array_edge_cases
+        test_reverse_array_edge_cases,
+        test_double_array,
+        test_double_array_zeros,
+
         // add more test function names here
 };
 
