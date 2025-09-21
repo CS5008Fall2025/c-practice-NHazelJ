@@ -4,8 +4,8 @@ Name: Najib Mosquera
 Completely answer the report questions below. Make sure to double check the final version to make sure it is easily readable on your github repository. 
 
 1. What is the difference between a standard numeric type (int, float, double) and a pointer?
-   For int, float and double, are the types that the variables will get. The actual values inside the variables that they will get.
-   Now the pointer it does not store the actual value, the pointer stores the memory address of the variable. You can use the pointer to print the value.
+   -For int, float and double, are the types that the variables will get. The actual values inside the variables that they will get.
+   -Now the pointer it does not store the actual value, the pointer stores the memory address of the variable. You can use the pointer to print the value.
 2. In your test file, we had the following code:
     
     ```c
@@ -13,11 +13,11 @@ Completely answer the report questions below. Make sure to double check the fina
     int expected[] = {1, 1, 2, 3, 5};
     ```
     Later in the code we only `free(arr)` but not expected. Why is this? What is the difference in where they are stored in memory?
-    Because running the function and storing it in arr, this create the memory allocation in the heap which needs to be free afterwards, on the other hand, expected[] is created
+    -Because running the function and storing it in arr, this create the memory allocation in the heap which needs to be free afterwards, on the other hand, expected[] is created
     in the stack which it doesn't have to be free.
 
 3. What is the difference between the heap and stack when related to memory allocation and management?
-   The stack is a region of memory used for local variables and function calls. Its memory is managed automatically, when a function ends, its stack variables are cleaned up. 
+   -The stack is a region of memory used for local variables and function calls. Its memory is managed automatically, when a function ends, its stack variables are cleaned up. 
    The heap is a region of memory used for dynamic allocation with functions like malloc, or calloc. 
    Unlike the stack, heap memory must be managed manually by the programmer using free() to avoid memory leaks.
 4. Take the following code:
