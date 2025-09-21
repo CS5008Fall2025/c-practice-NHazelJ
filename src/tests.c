@@ -99,12 +99,55 @@ int test_create_array_of_ints_fib_edge_cases() {
     return 1;
 }
 
+int test_reverse_array_one(){
+    // creating array on stack
+    int nums[] = {1, 2, 3, 4};
+    // calling function to reverse the array
+    reverse_array(nums, 4);
+    // expected values after reversing the array
+
+    if (nums[0] != 4) {
+        return 0;
+    }
+    if (nums[1] != 3) {
+        return 0;
+    }
+    if (nums[2] != 2) {
+        return 0;
+    }
+    if (nums[3] != 1) {
+        return 0;
+    }
+    // if all test passed then we return 1
+    return 1;
+}
+
+int test_reverse_array_edge_cases() {
+    // single value array
+    int one_value[] = {10};
+    reverse_array(one_value, 1);
+    if (one_value[0] != 10) {
+        // returns test failed
+        return 0;
+    }
+
+    // array with null with size 0
+    reverse_array(NULL, 0);
+
+    // both checks passed
+    return 1;
+}
+
+
+
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
         test_swap_two,
         test_create_array_of_ints_fib_edge_cases,
+        test_reverse_array_one,
+        test_reverse_array_edge_cases
         // add more test function names here
 };
 

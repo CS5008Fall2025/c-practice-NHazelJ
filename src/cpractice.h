@@ -126,6 +126,21 @@ int* create_array_of_ints_fib(int size){
  * Consider using swap. 
 */
 void reverse_array(int *arr, int size){
+    // checking if array is null, or size 0 or 1
+    if (arr == NULL || size <= 1) {
+        return;
+    }
+    // looping through half of the array
+    // swapping from both ends moves two values each time
+    for (int i = 0; i < size / 2; i++) {
+        // left_index is the value from the start
+        // right_index is the value from the end
+        int left_index = i;
+        int right_index = size - i - 1;
+        
+        // swap the two values using function swap above
+        swap(&arr[left_index], &arr[right_index]);
+    }
     
 }
 
