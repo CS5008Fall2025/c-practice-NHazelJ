@@ -403,9 +403,34 @@ void print_polygon(Polygon *p){
  * setting i+1 to j, where j= (i+1) % p->size before running the calculations)
  * 
  * after area is summed across all points, divide by 2.0 and return the area.
+ * it needs to have more than 3 ponts to be a polygon, otherwise return 0.0
 */
 double calculate_polygon_area(Polygon *p){
-    return 0.0;
+    // polygon needs to be greater than 3 at least
+    if(p == NULL || p->size < 3) {
+        return 0.0;
+    }
+    long area = 0;
+    // looping through each point in the polygon
+    for(int i = 0; i < p->size; i++) {
+        // j is the next index so now we have to loop back to 0 if at the end
+        int j = (i + 1) % p->size;
+        // this is the current points
+        long x_i = p->points[i]->x;
+        long y_i = p->points[i]->y;
+        // this is the next points
+        long x_j = p->points[j]->x;
+        long y_j = p->points[j]->y;
+
+        // we need to do this calculation: x_i * y_j - x_j * y_i
+        area += (x_i * y_j) - (x_j * y_i);
+    }
+    // returning the absolute value by making it positive
+    if (area < 0) {
+        area = -area;
+    }
+    // divide by 2.0 to get the polygon area
+    return area / 2.0;
 }
 
 #endif // C_PRACTICE_H

@@ -413,7 +413,7 @@ int test_create_rectangle_points() {
     if (rectangle == NULL) {
         return 0;
     }
-    // size must be 4 because it's a triangle
+    // size must be 4 because it's a rectangle
     if (rectangle->size != 4) { 
         free_polygon(rectangle); 
         return 0; 
@@ -471,6 +471,68 @@ int test_create_triangle_points() {
     // test passed
     return 1;
 }
+
+// testing area of a rectangle
+int test_area_rectangle() {
+    // creating a rectangle
+    Polygon *r = create_rectangle(5, 10);
+    if (r == NULL) {
+        return 0;
+    }
+    // calculating area
+    long area = calculate_polygon_area(r);
+    // free memory in the heap
+    free_polygon(r);
+    // area of rectangle is width * height = 5 * 10 = 50
+    if (area != 50.0) {
+        return 0;
+    }
+    // test passed
+    return 1;
+}
+// testing area of a triangle
+int test_area_triangle() {
+    // creating a triangle
+    Polygon *t = create_triangle(6, 4);
+    if (t == NULL) {
+        return 0;
+    }
+    // calculating area
+    long area = calculate_polygon_area(t);
+    // free memory in the heap
+    free_polygon(t);
+    // area of triangle is (base * height) / 2 = (6 * 4) / 2 = 12
+    if (area != 12.0) {
+        return 0;
+    }
+    // test passed
+    return 1;
+}
+
+int test_area_hexagon() {
+    // creating a hexagon
+    Polygon *hexa = create_polygon(6);
+    if (hexa == NULL) {
+        return 0;
+    }
+    // creating the six points of the hexagon
+    hexa->points[0] = create_point(12, 10);
+    hexa->points[1] = create_point(11, 12);
+    hexa->points[2] = create_point(9, 12);
+    hexa->points[3] = create_point(8, 10);
+    hexa->points[4] = create_point(9, 8);
+    hexa->points[5] = create_point(11, 8);
+    // calculating area
+    long area = calculate_polygon_area(hexa);
+    // free memory in the heap
+    free_polygon(hexa);
+    if (area <= 0.0) {
+        return 0;
+    }
+    // test passed
+    return 1;
+}
+
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
@@ -491,7 +553,10 @@ int (*unitTests[])() = {
         test_free_polygon_null_safe,
         test_free_polygon_basic,
         test_create_rectangle_points,
-        test_create_triangle_points
+        test_create_triangle_points,
+        test_area_rectangle,
+        test_area_triangle,
+        test_area_hexagon,
         // add more test function names here
 };
 
