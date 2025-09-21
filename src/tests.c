@@ -196,6 +196,112 @@ int test_double_array_zeros(){
     return 1;
 }
 
+//testing copy_array_start_end_loop function with simple test - no looping
+int test_copy_array_start_end_no_wrap() {
+    // original array on stack
+    int arr[] = {1, 2, 3, 4, 5};
+    // this will hold the size of the new array
+    int new_size = 0;
+    // calling the function returns the array in the heap
+    int *result_array = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
+    // if the function failed to allocate then it will return NULL
+    if (result_array == NULL) {
+         // test failed
+        return 0;
+    }
+    // expecting 3 elements: [2,3,4]
+    if (new_size != 3) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[0] != 2) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[1] != 3) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[2] != 4) {
+        free(result_array);
+        return 0; 
+    }
+    // free memory in the heap
+    free(result_array);
+
+    // test passed
+    return 1;
+}
+
+// testing copy_array_start_end_loop function with wrapping
+int test_copy_array_start_end_wrap() {    
+    // original array on stack
+    int arr[] = {1, 2, 3, 4, 5};
+    // this will hold the size of the new array
+    int new_size = 0;
+    // call the function creating new array in the heap
+    int *result_array = copy_array_start_end_loop(arr, 5, 3, 1, &new_size);
+    // if the function fails test fails
+    if (result_array == NULL) {
+        return 0;
+    }
+    // check the size
+    if (new_size != 4) { 
+        free(result_array);
+        return 0;
+    }
+    // check the expected values
+    if (result_array[0] != 4) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[1] != 5) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[2] != 1) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[3] != 2) {
+        free(result_array); 
+        return 0; 
+    }
+    // free memory since it came from malloc inside the function
+    free(result_array);
+
+    // tests passed
+    return 1;
+}
+
+// testing for invalid cases with the indexing
+int test_copy_array_start_end_invalid() {
+    // original array on stack
+    int arr[] = {1, 2, 3, 4, 5};
+    // will hold size
+    int new_size = 0;
+    // starting negative
+    int *result_a = copy_array_start_end_loop(arr, 5, -1, 2, &new_size);
+    if (result_a != NULL) {
+        free(result_a);
+        return 0;
+    }
+    // ending too big
+    int *result_b = copy_array_start_end_loop(arr, 5, 0, 5, &new_size);
+    if (result_b != NULL) {
+        free(result_b);
+        return 0;
+    }
+    // bad start (>= size)
+    int *result_c = copy_array_start_end_loop(arr, 5, 9, 1, &new_size);
+    if (result_c != NULL) {
+        free(result_c);
+        return 0;
+    }
+    // test passed
+    return 1;
+}
+
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
@@ -206,6 +312,9 @@ int (*unitTests[])() = {
         test_reverse_array_edge_cases,
         test_double_array,
         test_double_array_zeros,
+        test_copy_array_start_end_no_wrap,
+        test_copy_array_start_end_wrap,
+        test_copy_array_start_end_invalid,
 
         // add more test function names here
 };

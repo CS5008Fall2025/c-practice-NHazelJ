@@ -201,7 +201,44 @@ int* double_array_size(int *arr, int size){
  * to get an OB1 error!
  */
 int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_size) {
-    return NULL;
+    // checking if start or end are invalid and not null
+    if (arr == NULL || new_size == NULL) {
+        return NULL;
+    }
+    // checking another thing like start and end must be valid index
+    if (start < 0 || start >= size || end < 0 || end >= size) {
+        return NULL;
+    }
+
+    // calculating the number of elements to copy
+    int count;
+    if (end >= start) {
+        // normal case where end is after start
+        count = end - start + 1;
+    } else {
+        // this will make it loop around
+        count = (size - start) + (end + 1);
+    }
+
+    // allocating memory for the new array to hold count int
+    int *new_arr = malloc(sizeof(int) * count);
+    // checking if malloc worked or not
+    if (new_arr == NULL) { 
+        return NULL;
+    }
+
+    // copying elements from arr to new_arr
+    for (int i = 0; i < count; i++) {
+        // using modulo to loop around the array so that if we go past the end, 
+        // we start back at the beginning
+        int index = (start + i) % size;
+        new_arr[i] = arr[index];
+    }
+    // updateing the new_size value which is the new_size pointer
+    *new_size = count;
+    // returning the pointer to the new array
+    return new_arr;
+   
 }
 
 /* 
