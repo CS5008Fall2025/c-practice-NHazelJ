@@ -305,7 +305,23 @@ Polygon* create_polygon(int size){
  * all the points, to free them, free the array, and then free the polygon itself.
 */
 void free_polygon(Polygon *p){
-    
+    // first checking if polygon is null
+    if(p == NULL) {
+        return;
+    }
+    // if points array are present then free each point
+    if(p->points != NULL) {
+        for(int i = 0; i < p->size; i++) {
+            // free each point if it is not null
+            if(p->points[i] != NULL) {
+                free(p->points[i]);
+            }
+        }
+        // free the array of point pointers
+        free(p->points);
+    }
+    // free the polygon
+    free(p);
 }
 
 /**
@@ -318,7 +334,20 @@ void free_polygon(Polygon *p){
  * 0, height
 */
 Polygon* create_rectangle(int width, int height){
-    return NULL;
+    // create a polygon with 4 points because recangle has 4 points
+    Polygon *rectangle = create_polygon(4);
+    // checking if allocation worked or not
+    if (rectangle == NULL) {
+        return NULL;
+    }
+    // creating the four points of the rectangle
+    rectangle->points[0] = create_point(0, 0);
+    rectangle->points[1] = create_point(width, 0);
+    rectangle->points[2] = create_point(width, height);
+    rectangle->points[3] = create_point(0, height);
+
+    // returning the pointer to the rectangle polygon
+    return rectangle;
 }
 
 
@@ -331,7 +360,18 @@ Polygon* create_rectangle(int width, int height){
  * width, height
 */
 Polygon* create_triangle(int width, int height){
-    return NULL;
+    // create a polygon with 3 points because triangle has 3 points
+    Polygon *triangle = create_polygon(3);
+    // checking if allocation worked or not
+    if (triangle == NULL) {
+        return NULL;
+    }
+    // creating the three points of the triangle
+    triangle->points[0] = create_point(0, 0);
+    triangle->points[1] = create_point(width, 0);
+    triangle->points[2] = create_point(width, height);
+    // returning the pointer to the triangle polygon
+    return triangle;
 }
 
 /**

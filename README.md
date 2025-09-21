@@ -12,4 +12,5 @@ Did you collaborate with any other students/TAs/Professors? If so, tell us who a
 
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)  
 - Math.net. https://www.math.net/list-of-fibonacci-numbers. Accessed: 20 September 2025. 
+- GeeksforGeeks - Point in polygon in C. https://www.geeksforgeeks.org/c/point-in-polygon-in-c/ Accessed: 20 September 2025.
 

@@ -382,6 +382,95 @@ int test_create_polygon_invalid_size() {
     return 1;
 }
 
+// testing free_polygon with NULL
+int test_free_polygon_null_safe() {
+    // just checking the call with NULL
+    free_polygon(NULL);
+    // if passed then it should be good to go
+    return 1;
+}
+
+// testing free_polygon with a basic polygon with points
+int test_free_polygon_basic() {
+    // create a polygon couple of points
+    Polygon *p = create_polygon(2);
+    if (p == NULL) {
+        return 0;
+    }
+    // creating points for the polygon
+    p->points[0] = create_point(1, 2);
+    p->points[1] = create_point(3, 4);
+    // free the polygon
+    free_polygon(p);
+    // test passed so it was free successfully
+    return 1;
+}
+// testing create_rectangle function
+int test_create_rectangle_points() {
+    // calling the function
+    Polygon *rectangle = create_rectangle(5, 10);
+    // checking for null
+    if (rectangle == NULL) {
+        return 0;
+    }
+    // size must be 4 because it's a triangle
+    if (rectangle->size != 4) { 
+        free_polygon(rectangle); 
+        return 0; 
+    }
+    // check each expected corner of the rectangle
+    if (rectangle->points[0]->x != 0 || rectangle->points[0]->y != 0)   { 
+        free_polygon(rectangle); 
+        return 0; 
+    }
+    if (rectangle->points[1]->x != 5 || rectangle->points[1]->y != 0)   { 
+        free_polygon(rectangle); 
+        return 0; 
+    }
+    if (rectangle->points[2]->x != 5 || rectangle->points[2]->y != 10)  { 
+        free_polygon(rectangle); 
+        return 0; 
+    }
+    if (rectangle->points[3]->x != 0 || rectangle->points[3]->y != 10)  { 
+        free_polygon(rectangle); 
+        return 0; 
+    }
+    // freeing the memory in the heap
+    free_polygon(rectangle);
+    // test passed
+    return 1;
+}
+// checking create_triangle function
+int test_create_triangle_points() {
+    // calling the function
+    Polygon *triangle = create_triangle(6, 4);
+    // checking that it's not a null
+    if (triangle == NULL) {
+        return 0;
+    }
+    // size must be at least 3 because it's a triangle
+    if (triangle->size != 3) { 
+        free_polygon(triangle); 
+        return 0; 
+    }
+    // check each corner of the triangle
+    if (triangle->points[0]->x != 0 || triangle->points[0]->y != 0) { 
+        free_polygon(triangle); 
+        return 0; 
+    }
+    if (triangle->points[1]->x != 6 || triangle->points[1]->y != 0) { 
+        free_polygon(triangle); 
+        return 0; 
+    }
+    if (triangle->points[2]->x != 6 || triangle->points[2]->y != 4) { 
+        free_polygon(triangle); 
+        return 0; 
+    }
+    // freeing memory in the heap for the triangle
+    free_polygon(triangle);
+    // test passed
+    return 1;
+}
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
@@ -398,7 +487,11 @@ int (*unitTests[])() = {
         test_create_point_values,
         test_create_point_alloc,
         test_basic_create_polygon,
-        test_create_polygon_invalid_size
+        test_create_polygon_invalid_size,
+        test_free_polygon_null_safe,
+        test_free_polygon_basic,
+        test_create_rectangle_points,
+        test_create_triangle_points
         // add more test function names here
 };
 
