@@ -301,6 +301,86 @@ int test_copy_array_start_end_invalid() {
     // test passed
     return 1;
 }
+// creating point values correctly
+int test_create_point_values() {
+    // call the function to create a point
+    Point *point = create_point(5, -2);
+    // check if allocation is working
+    if (point == NULL) {
+        return 0;
+    }
+    // checking values
+    if (point->x != 5) { 
+        free(point); 
+        return 0; 
+    }
+    if (point->y != -2) { 
+        free(point); 
+        return 0; 
+    }
+    // free memory in the heap
+    free(point);
+    // test passed
+    return 1;
+}
+// creating a point and returning a non null value
+int test_create_point_alloc() {
+    Point *point = create_point(0, 0);
+    // checking that won't be a null 
+    if (point == NULL) {
+        return 0;
+    }
+    // free memory in the heap
+    free(point);
+    return 1;
+}
+
+int test_basic_create_polygon() {
+    // call the function to create a polygon
+    Polygon *point = create_polygon(4);
+    // checking if allocation worked or not
+    if (point == NULL) {
+        // if failed return 0
+        return 0;
+    }
+    // checking with 4 and must not be null
+    if (point->size != 4) {
+        free_polygon(point);
+        return 0;
+    }
+    if (point->points == NULL) {
+        free_polygon(point);
+        return 0;
+    }
+    // every element should be NULL
+    for (int i = 0; i < 4; i++) {
+        if (point->points[i] != NULL) {
+            free_polygon(point);
+            return 0;
+        }
+    }
+    // free memory in the heap
+    free_polygon(point);
+    // test passed
+    return 1;
+}
+// testing invalid sizes for creating the polygon
+int test_create_polygon_invalid_size() {
+    // size 0 should be invalid
+    Polygon *zero = create_polygon(0);
+    if (zero != NULL) {
+        free_polygon(zero);
+        return 0;
+    }
+    // negative size should also be invalid
+    Polygon *negative= create_polygon(-3);
+    if (negative != NULL) {
+        free_polygon(negative);
+        return 0;
+    }
+    // tests passed
+    return 1;
+}
 
 // this is a list of all the unit tests
 int (*unitTests[])() = {
@@ -315,7 +395,10 @@ int (*unitTests[])() = {
         test_copy_array_start_end_no_wrap,
         test_copy_array_start_end_wrap,
         test_copy_array_start_end_invalid,
-
+        test_create_point_values,
+        test_create_point_alloc,
+        test_basic_create_polygon,
+        test_create_polygon_invalid_size
         // add more test function names here
 };
 

@@ -250,7 +250,17 @@ Practice with struts
  * and returns the new point
 */
 Point* create_point(int x, int y){
-    return NULL;
+    // allocating memory on the heap for one point
+    Point *point = (Point*)malloc(sizeof(Point));
+    // if malloc fails, it returns NULL
+    if (point == NULL) {
+        return NULL;
+    }
+    // set the fields
+    point->x = x;
+    point->y = y;
+    // return the pointer to the new Point
+    return point;
 }
 
 /**
@@ -261,7 +271,32 @@ Point* create_point(int x, int y){
  * the point values. it is just a polygon of eventual size, and an array of empty points. 
 */
 Polygon* create_polygon(int size){
-    return NULL;
+    // checking for edge cases if negative or zero size
+    if (size <= 0) {
+        return NULL;
+    }
+    // allocating memory for the polygon
+    Polygon *polygon = (Polygon*)malloc(sizeof(Polygon));
+    // checking if malloc worked or not
+    if (polygon == NULL) {
+        return NULL;
+    }
+    // store the size of the polygon
+    polygon->size = size;
+    // allocating memory for the array of point pointers
+    polygon->points = (Point**)malloc(sizeof(Point*) * size);
+    // checking if malloc worked or not
+    if (polygon->points == NULL) {
+        // free the polygon memory before returning NULL
+        free(polygon);
+        return NULL;
+    }
+    // initializing all the point pointers to NULL
+    for (int i = 0; i < size; i++) {
+        polygon->points[i] = NULL;
+    }
+    // return pointer to new polygon
+    return polygon;
 }
 
 
