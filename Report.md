@@ -103,7 +103,7 @@ For both these questions, are you are free to use what you did as the last secti
 1. Select one technical interview question (this module or previous) from the [technical interview list](https://github.com/CS5008-khoury/Resources/blob/main/TechInterviewQuestions.md) below and answer it in a few sentences. You can use any resource you like to answer the question.  Explain the process of opening, reading, writing, and closing a file in C. What do we need to watch out for?  In C you open a file with fopen(), specifying like "r" (read) or "w" (write). Always see if the file actually opened (not NULL). You may then use functions like fgets() or fscanf() to read, and fprintf() or fputs() to write. How to fread() Call fclose() When you are done, call fclose(). Just be mindful of file modes (like "w" mode will clobber your data), buffer sizes, etc. and be sure to close the file without fail to prevent lost data.
 
 2. Select one coding question (this module or previous) from the [coding practice repository](https://github.com/CS5008-khoury/Resources/blob/main/LeetCodePractice.md) and include a c file with that code with your submission. Make sure to add comments on what you learned, and if you compared your solution with others.  
-268. Missing Number problem 268 
+268. Missing Number problem 268  
 ![268MissingNumberLeetCode](268MissingNumberCodingPractice.png)
 
 
