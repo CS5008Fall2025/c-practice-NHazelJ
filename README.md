@@ -1,11 +1,11 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/CbzfTysD)
 # Homework - C Practice - Readme
 
-Name:
+Name: Najib Mosquera
 
 Link to Assignment on Github: [https://github.com/CS5008Fall2025/c-practice-NHazelJ/tree/main]
 
-How many hours did it take you to complete this assignment (estimate)? 14 hrs
+How many hours did it take you to complete this assignment (estimate)? 16 hrs
 
 Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.  
 - N/A
