@@ -46,6 +46,20 @@ int test_swap_two(){
     return 0;
 }
 
+// testing if both input are the same value
+int test_swap_same_values(){
+    int a = 7;
+    int b = 7;
+
+    // calling swap function
+    swap(&a, &b);
+    // checking values if the same
+    if (a == 7 && b == 7) {
+        return 1;
+    }
+    return 0;
+}
+
 /**
  * Tests the create_array_of_ints_fib function
 */
@@ -75,7 +89,7 @@ int test_create_array_of_ints_fib() {
 
 int test_create_array_of_ints_fib_edge_cases() {
     // checking size 1 for fib
-    printf("2. test_create_array_of_ints_fib()\n");
+    printf("2. test_create_array_of_ints_fib_edge_cases()\n");
     int* arr = create_array_of_ints_fib(1);
     if (arr == NULL) {
         return 0;
@@ -96,6 +110,30 @@ int test_create_array_of_ints_fib_edge_cases() {
         return 0;
     }
     // after checking both edge cases and passing then we get return 1
+    return 1;
+}
+
+int test_create_array_of_ints_fib_large_size() {
+    // checking size 10 for fib
+    printf("3. test_create_array_of_ints_fib_large_size()\n");
+    int* arr = create_array_of_ints_fib(10);
+    if (arr == NULL) {
+        return 0;
+    }
+    // expected values for fib of size 10
+    int expected[] = {1, 1, 2, 3, 5, 8, 13, 21, 34, 55};
+    // comparing every value in the array of what we got to the expected values
+    for (int i = 0; i < 10; i++) {
+        if (arr[i] != expected[i]) {
+            // if any value is wrong then free memory
+            free(arr);
+            // return 0 fail test
+            return 0;
+        }
+    }
+    // after checking all values and being matched then we free memory
+    free(arr);
+    // test passed
     return 1;
 }
 
@@ -138,6 +176,35 @@ int test_reverse_array_edge_cases() {
     return 1;
 }
 
+int test_reverse_array_even_size() {
+    // creating an array with even size
+    int nums[] = {1, 2, 3, 4, 5, 6};
+    // calling function to reverse the array
+    reverse_array(nums, 6);
+    // expected values after reversing the array
+
+    if (nums[0] != 6) {
+        return 0;
+    }
+    if (nums[1] != 5) {
+        return 0;
+    }
+    if (nums[2] != 4) {
+        return 0;
+    }
+    if (nums[3] != 3) {
+        return 0;
+    }
+    if (nums[4] != 2) {
+        return 0;
+    }
+    if (nums[5] != 1) {
+        return 0;
+    }
+    // if all test passed then we return 1
+    return 1;
+}
+
 // testing double_array function
 // [1, 2, 3] -> [1, 2, 3, 0, 0, 0]
 
@@ -164,6 +231,18 @@ int test_double_array(){
     }
     // freeing memory in the heap
     free(new_arr);
+    // test passed
+    return 1;
+}
+
+int test_double_empty_array(){
+    // calling function with null and size 0
+    int *new_array = double_array_size(NULL, 0);
+    // checking if it returns null or not
+    if(new_array != NULL){
+        free(new_array);
+        return 0;
+    }
     // test passed
     return 1;
 }
@@ -195,6 +274,8 @@ int test_double_array_zeros(){
     // test passed
     return 1;
 }
+
+
 
 //testing copy_array_start_end_loop function with simple test - no looping
 int test_copy_array_start_end_no_wrap() {
@@ -233,46 +314,7 @@ int test_copy_array_start_end_no_wrap() {
     return 1;
 }
 
-// testing copy_array_start_end_loop function with wrapping
-int test_copy_array_start_end_wrap() {    
-    // original array on stack
-    int arr[] = {1, 2, 3, 4, 5};
-    // this will hold the size of the new array
-    int new_size = 0;
-    // call the function creating new array in the heap
-    int *result_array = copy_array_start_end_loop(arr, 5, 3, 1, &new_size);
-    // if the function fails test fails
-    if (result_array == NULL) {
-        return 0;
-    }
-    // check the size
-    if (new_size != 4) { 
-        free(result_array);
-        return 0;
-    }
-    // check the expected values
-    if (result_array[0] != 4) { 
-        free(result_array); 
-        return 0; 
-    }
-    if (result_array[1] != 5) { 
-        free(result_array); 
-        return 0; 
-    }
-    if (result_array[2] != 1) { 
-        free(result_array); 
-        return 0; 
-    }
-    if (result_array[3] != 2) {
-        free(result_array); 
-        return 0; 
-    }
-    // free memory since it came from malloc inside the function
-    free(result_array);
 
-    // tests passed
-    return 1;
-}
 
 // testing for invalid cases with the indexing
 int test_copy_array_start_end_invalid() {
@@ -301,6 +343,87 @@ int test_copy_array_start_end_invalid() {
     // test passed
     return 1;
 }
+
+// testing copy_array_start_end_loop function with wrapping
+int test_copy_array_start_end_wrap() {    
+    // on stack
+    int arr[] = {1, 2, 3, 4, 5};
+    // this will hold the size of the new array
+    int new_size = 0;
+    // call the function creating new array in the heap
+    int *result_array = copy_array_start_end_loop(arr, 5, 3, 1, &new_size);
+    // if the function fails, test fails
+    if (result_array == NULL) {
+        return 0;
+    }
+    // checking the size
+    if (new_size != 4) { 
+        free(result_array); 
+        return 0; 
+    }
+    // check the expected values
+    if (result_array[0] != 4) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[1] != 5) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[2] != 1) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[3] != 2) { 
+        free(result_array); 
+        return 0; 
+    }
+    // free memory in the heap
+    free(result_array);
+    // test passed
+    return 1;
+}
+
+// testing copy_array_start_end_loop function by copying the full array
+int test_copy_array_full_circle_copy() {
+    // array on the stack
+    int arr[] = {1, 2, 3, 4, 5};
+    // holding size of new array
+    int new_size = 0;
+    // calling function to copy from index 3 to index 1
+    int *result_array = copy_array_start_end_loop(arr, 5, 3, 1, &new_size);
+    // if the function failed to allocate then it will return NULL
+    if (result_array == NULL) {
+         // test failed
+        return 0;
+    }
+    // expecting 4 elements: [4,5,1,2]
+    if (new_size != 4) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[0] != 4) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[1] != 5) { 
+        free(result_array); 
+        return 0; 
+    }
+    if (result_array[2] != 1) {
+        free(result_array);
+        return 0; 
+    }
+    if (result_array[3] != 2) {
+        free(result_array);
+        return 0; 
+    }
+    // free memory in the heap
+    free(result_array);
+    // test passed
+    return 1;
+}
+
 // creating point values correctly
 int test_create_point_values() {
     // call the function to create a point
@@ -335,6 +458,19 @@ int test_create_point_alloc() {
     return 1;
 }
 
+int test_create_point_malloc_fail() {
+    // prevent malloc failure, call the function and check for NULL
+    Point *point = create_point(0, 0);
+    if (point == NULL) {
+        // If malloc fails return NULL
+        // test passed
+        return 1;
+    }
+    // Free memory if allocation succeeded
+    free(point);
+    return 1;
+}
+
 int test_basic_create_polygon() {
     // call the function to create a polygon
     Polygon *point = create_polygon(4);
@@ -364,6 +500,36 @@ int test_basic_create_polygon() {
     // test passed
     return 1;
 }
+
+// creating a polygon with size 1
+int test_create_polygon_one_point() {
+    // create a polygon that can hold 1 point
+    Polygon *p = create_polygon(1);
+    // check if allocation works or not
+    if (p == NULL) {
+        return 0;
+    }
+    // size should be 1
+    if (p->size != 1) {
+        free_polygon(p);
+        return 0;
+    }
+    // points array should exist
+    if (p->points == NULL) {
+        free_polygon(p);
+        return 0;
+    }
+    // entry should be initialized to NULL
+    if (p->points[0] != NULL) {
+        free_polygon(p);
+        return 0;
+    }
+    // free memory in the heap
+    free_polygon(p);
+    // test passed
+    return 1;
+}
+
 // testing invalid sizes for creating the polygon
 int test_create_polygon_invalid_size() {
     // size 0 should be invalid
@@ -509,6 +675,38 @@ int test_area_triangle() {
     return 1;
 }
 
+// testing triangle with zero height
+int test_create_triangle_zero_height() {
+    // create a triangle with width 5 and height 0
+    Polygon *triangle = create_triangle(5, 0);
+    // check if allocation works
+    if (triangle == NULL) {
+        return 0;
+    }
+    // triangle should have 3 points
+    if (triangle->size != 3) {
+        free_polygon(triangle);
+        return 0;
+    }
+    // check each corner of the triangle
+    if (triangle->points[0]->x != 0 || triangle->points[0]->y != 0) { 
+	free_polygon(triangle); 
+	return 0; 
+	}
+    if (triangle->points[1]->x != 5 || triangle->points[1]->y != 0) { 
+	free_polygon(triangle); 
+	return 0; 
+	}
+    if (triangle->points[2]->x != 5 || triangle->points[2]->y != 0) { 
+	free_polygon(triangle); 
+	return 0; 
+	}
+    // free memory in the heap
+    free_polygon(triangle);
+    // test passed
+    return 1;
+}
+
 int test_area_hexagon() {
     // creating a hexagon
     Polygon *hexa = create_polygon(6);
@@ -534,26 +732,35 @@ int test_area_hexagon() {
 }
 
 // this is a list of all the unit tests
+// 30 unit test total
 int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
         test_swap_two,
+        test_swap_same_values,
         test_create_array_of_ints_fib_edge_cases,
+        test_create_array_of_ints_fib_large_size,
         test_reverse_array_one,
         test_reverse_array_edge_cases,
+        test_reverse_array_even_size,
         test_double_array,
+        test_double_empty_array,
         test_double_array_zeros,
         test_copy_array_start_end_no_wrap,
         test_copy_array_start_end_wrap,
+        test_copy_array_full_circle_copy,
         test_copy_array_start_end_invalid,
         test_create_point_values,
         test_create_point_alloc,
+        test_create_point_malloc_fail,
         test_basic_create_polygon,
+        test_create_polygon_one_point,
         test_create_polygon_invalid_size,
         test_free_polygon_null_safe,
         test_free_polygon_basic,
         test_create_rectangle_points,
         test_create_triangle_points,
+        test_create_triangle_zero_height,
         test_area_rectangle,
         test_area_triangle,
         test_area_hexagon,
